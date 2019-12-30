@@ -169,6 +169,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BrisanjeDogadjaja.resx">
+      <DependentUpon>BrisanjeDogadjaja.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Meni.resx">
       <DependentUpon>Meni.h</DependentUpon>
     </EmbeddedResource>
