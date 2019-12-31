@@ -357,7 +357,7 @@ namespace AdministrativnaAplikacija {
 
 
 		System::String^ itemname;
-		myfile.open("../../Fajlovi\\Dogadjaji.txt"); //Reading txt file
+		myfile.open("../../Fajlovi\\Dogadjaji.txt");
 		int pozicija[100], duzina, i, j = 0, k = 0;
 
 
@@ -442,7 +442,7 @@ namespace AdministrativnaAplikacija {
 
 
 			System::String^ itemname;
-			myfile.open("../../Fajlovi\\Dogadjaji.txt"); //Reading txt file
+			myfile.open("../../Fajlovi\\Dogadjaji.txt");
 			int pozicija[100], duzina, j = 0, k = 0;
 			String^ novi;
 			int p = 1, i = 1;
@@ -490,7 +490,7 @@ namespace AdministrativnaAplikacija {
 		String^ lokacija = textBox3->Text;
 		String^ datum = textBox4->Text;
 		String^ vrijeme = textBox5->Text;
-		String^ komentar = textBox7->Text;//novo
+		String^ komentar = textBox7->Text;
 
 		std::ifstream file1;
 		file1.open("../../Fajlovi\\Komentari.txt");
@@ -607,7 +607,7 @@ namespace AdministrativnaAplikacija {
 								outFile << ";";
 								outFile << "\n";
 
-								//za komentar
+								
 								std::ifstream kfile1;
 								kfile1.open("../../Fajlovi\\Komentari.txt", std::ios::in);
 								std::ofstream kfile2;

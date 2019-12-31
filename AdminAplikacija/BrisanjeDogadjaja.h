@@ -169,6 +169,14 @@ namespace AdministrativnaAplikacija {
 		table->Columns->Add("Datum");
 		table->Columns->Add("Vrijeme");
 		dataGridView1->DataSource = table;
+		textBox2->Enabled = false;
+
+
+		DataGridViewButtonColumn^ btn = gcnew DataGridViewButtonColumn();
+		btn->Name = "Komentari";
+		btn->Text = "Komentari";
+		btn->UseColumnTextForButtonValue = true;
+		dataGridView1->Columns->Add(btn);
 
 
 		std::ifstream myfile;
@@ -314,9 +322,9 @@ namespace AdministrativnaAplikacija {
 	private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
-		if (dataGridView1->Rows[e->RowIndex]->Cells[e->ColumnIndex]->Value != nullptr)
+		if (e->ColumnIndex == 7)
 		{
-			textBox2->Enabled = false;
+			
 			String^ trenutni = dataGridView1->Rows[e->RowIndex]->Cells["Naziv"]->FormattedValue->ToString();
 			std::string t = static_cast<const char*>(Marshal::StringToHGlobalAnsi(trenutni).ToPointer());
 			std::fstream inFile;

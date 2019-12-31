@@ -31,6 +31,9 @@ namespace AdministrativnaAplikacija {
 			//
 		}
 	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::Label^  label2;
+
 	public:
 		DataTable^ table = gcnew DataTable();
 
@@ -65,6 +68,8 @@ namespace AdministrativnaAplikacija {
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -91,11 +96,30 @@ namespace AdministrativnaAplikacija {
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Sortirati pritiskom na zeljeni naziv kolone";
 			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(699, 47);
+			this->textBox1->Multiline = true;
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(209, 256);
+			this->textBox1->TabIndex = 2;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(696, 18);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(54, 13);
+			this->label2->TabIndex = 3;
+			this->label2->Text = L"Komentari";
+			// 
 			// PregledSvihDogadjaja
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(704, 315);
+			this->ClientSize = System::Drawing::Size(931, 315);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);
 			this->Name = L"PregledSvihDogadjaja";
@@ -108,6 +132,7 @@ namespace AdministrativnaAplikacija {
 		}
 #pragma endregion
 	private: System::Void PregledSvihDogadjaja_Load(System::Object^  sender, System::EventArgs^  e) {
+		textBox1->Enabled = false;
 		dataGridView1->AllowUserToAddRows = false;
 		table->Columns->Add("ID");
 		table->Columns->Add("Naziv");
@@ -130,7 +155,7 @@ namespace AdministrativnaAplikacija {
 
 
 		System::String^ itemname;
-		myfile.open("../../Fajlovi\\Dogadjaji.txt"); //Reading txt file
+		myfile.open("../../Fajlovi\\Dogadjaji.txt");
 		int pozicija[100], duzina, i, j = 0, k = 0;
 
 
@@ -186,7 +211,7 @@ namespace AdministrativnaAplikacija {
 
 
 				std::string svi;
-				//svi = sline;
+				
 				while (sline != "}")
 				{
 					svi = svi + sline;
@@ -195,8 +220,8 @@ namespace AdministrativnaAplikacija {
 					std::getline(myfile, sline);
 
 				}
-				String^ gotovo = gcnew String(svi.c_str());
-				MessageBox::Show(gotovo);
+				String^ komentar = gcnew String(svi.c_str());
+				textBox1->Text = komentar;
 
 
 			}

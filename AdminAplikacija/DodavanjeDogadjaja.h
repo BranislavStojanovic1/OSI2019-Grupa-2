@@ -271,7 +271,7 @@ namespace AdministrativnaAplikacija {
 		String^ lokacija = textBox3->Text;
 		String^ datum = textBox4->Text;
 		String^ vrijeme = textBox5->Text;
-		String^ komentar = textBox6->Text;//novo
+		String^ komentar = textBox6->Text;
 
 		std::string selectedUnmenaged = static_cast<const char*>(Marshal::StringToHGlobalAnsi(selected).ToPointer());
 		std::string nazivUnmenaged = static_cast<const char*>(Marshal::StringToHGlobalAnsi(naziv).ToPointer());
@@ -306,7 +306,7 @@ namespace AdministrativnaAplikacija {
 		{
 			std::ofstream outFile;
 			std::ifstream outFile2;
-			outFile2.open("../../Fajlovi\\Komentari.txt");//novo
+			outFile2.open("../../Fajlovi\\Komentari.txt");
 			outFile.open("../../Fajlovi\\Dogadjaji.txt", std::ios_base::app);
 			if (outFile && !String::IsNullOrWhiteSpace(naziv) && !String::IsNullOrWhiteSpace(selected)
 				&& !String::IsNullOrWhiteSpace(opis) && !String::IsNullOrWhiteSpace(lokacija) && !String::IsNullOrWhiteSpace(datum)
@@ -334,10 +334,10 @@ namespace AdministrativnaAplikacija {
 					}
 				}
 				if (!k && (br2 != 3))  MessageBox::Show("Neispravan datum");
-				std::string nesto;
+				std::string kombinacija;
 				for (int broj : niz)
-					nesto += std::to_string(broj);
-				if (nesto == "2245810")
+					kombinacija += std::to_string(broj);
+				if (kombinacija == "2245810")
 				{
 					outFile << nazivUnmenaged;
 					outFile << ";";
@@ -352,7 +352,7 @@ namespace AdministrativnaAplikacija {
 					outFile << vrijemeUnmenaged;
 					outFile << ";";
 					outFile << "\n";
-					//searcham ako ne nadjem ubacujem
+					
 					int k = 1;
 					std::string sline;
 					for (; k && std::getline(outFile2, sline); )
@@ -388,7 +388,7 @@ namespace AdministrativnaAplikacija {
 			}
 			else
 			{
-				MessageBox::Show("Nedovoljno podataka");//novo
+				MessageBox::Show("Nedovoljno podataka");
 			}
 			outFile.close();
 		}

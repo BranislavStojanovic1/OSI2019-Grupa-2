@@ -175,6 +175,9 @@
     <EmbeddedResource Include="Meni.resx">
       <DependentUpon>Meni.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PregledSvihDogadjaja.resx">
+      <DependentUpon>PregledSvihDogadjaja.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

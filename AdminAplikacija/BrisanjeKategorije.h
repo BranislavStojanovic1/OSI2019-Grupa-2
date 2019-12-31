@@ -136,11 +136,6 @@ namespace AdministrativnaAplikacija {
 			std::ofstream outfile;
 			outfile.open("../../Fajlovi\\KategorijeTemp.txt", std::ios::out);
 
-
-
-
-
-
 			std::ifstream myfile;
 
 
@@ -156,8 +151,7 @@ namespace AdministrativnaAplikacija {
 				p++;
 				if (sline == izborUnmenaged)
 					k = 0;
-				String^ ala = gcnew String(sline.c_str());
-				MessageBox::Show(ala);
+				
 
 				std::getline(myfile, sline);
 				if (myfile.eof())k = 2;
@@ -172,13 +166,7 @@ namespace AdministrativnaAplikacija {
 				{
 					if (!izborUnmenaged.compare(sline))
 					{
-						MessageBox::Show("Uspjesno obrisan");
-
-
-
-
-
-
+						MessageBox::Show("Brisanje Uspjesno");
 					}
 					else
 					{
