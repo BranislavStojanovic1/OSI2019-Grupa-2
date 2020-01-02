@@ -118,26 +118,31 @@ namespace AdministrativnaAplikacija {
 			std::ifstream inFile;
 			inFile.open("../../Fajlovi\\Kategorije.txt", std::ios_base::in);
 			std::string kategorijaUnmenaged = static_cast<const char*>(Marshal::StringToHGlobalAnsi(unos).ToPointer());
-			std::string temp;
-			int k = 1;
-			while (inFile >> temp && k)
-			{
-				if (temp == kategorijaUnmenaged)
-					k = 0;
-
-			}
-			inFile.close();
-
-			if (k)
-			{
-				std::ofstream outFile;
-				outFile.open("../../Fajlovi\\Kategorije.txt", std::ios_base::app);
-				outFile << kategorijaUnmenaged;
-				outFile << "\n";
-				MessageBox::Show("Uspjesno dodano");
-			}
+			if (kategorijaUnmenaged.find(';') != std::string::npos)
+				MessageBox::Show("Znak ; nije dozvoljen");
 			else
-				MessageBox::Show("Kategorija vec postoji");
+			{
+				std::string temp;
+				int k = 1;
+				while (inFile >> temp && k)
+				{
+					if (temp == kategorijaUnmenaged)
+						k = 0;
+				}
+				inFile.close();
+
+				if (k)
+				{
+					std::ofstream outFile;
+					outFile.open("../../Fajlovi\\Kategorije.txt", std::ios_base::app);
+					outFile << kategorijaUnmenaged;
+					outFile << "\n";
+					MessageBox::Show("Uspjesno dodano");
+				}
+				else
+					MessageBox::Show("Kategorija vec postoji");
+			}
+			
 
 		}
 		else MessageBox::Show("Polje je prazno");

@@ -73,5 +73,8 @@
     <EmbeddedResource Include="BrisanjeDogadjaja.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="PregledSvihDogadjaja.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

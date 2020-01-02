@@ -171,17 +171,13 @@ namespace AdministrativnaAplikacija {
 		dataGridView1->DataSource = table;
 		textBox2->Enabled = false;
 
-
 		DataGridViewButtonColumn^ btn = gcnew DataGridViewButtonColumn();
 		btn->Name = "Komentari";
 		btn->Text = "Komentari";
 		btn->UseColumnTextForButtonValue = true;
 		dataGridView1->Columns->Add(btn);
 
-
 		std::ifstream myfile;
-
-
 		System::String^ itemname;
 		myfile.open("../../Fajlovi\\Dogadjaji.txt"); //Reading txt file
 		int pozicija[100], duzina, i, j = 0, k = 0;
@@ -210,14 +206,11 @@ namespace AdministrativnaAplikacija {
 			dataGridView1->Rows[k]->Cells["Datum"]->Value = itemname->Substring((pozicija[3] + 1), (pozicija[4] - pozicija[3] - 1));
 			dataGridView1->Rows[k]->Cells["Vrijeme"]->Value = itemname->Substring((pozicija[4] + 1), (pozicija[5] - pozicija[4] - 1));
 			k++;
-
 		}
-
 	}
 	public: bool checkIfNumber(std::string a)
 	{
 		int length = a.length();
-
 		int i = 0;
 		while (length)
 		{
@@ -230,101 +223,81 @@ namespace AdministrativnaAplikacija {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		String^ id = textBox1->Text;
 		std::string idUnmenaged = static_cast<const char*>(Marshal::StringToHGlobalAnsi(id).ToPointer());
-		int ID;
-		if (checkIfNumber(idUnmenaged))
-		{
-			ID = std::stoi(idUnmenaged);
-			std::ifstream infile;
-			infile.open("../../Fajlovi\\Dogadjaji.txt", std::ios::in);
-			std::string sline;
-
-			std::ofstream outfile;
-			outfile.open("../../Fajlovi\\DogadjajiTemp.txt", std::ios::out);
-
-			int k = 0;
-			for (int i = 1; std::getline(infile, sline); i++)
-			{
-				if (i == ID)
-				{
-					k = 1;
-					this->Close();
-
-
-
-				}
-				else
-				{
-					outfile << sline;
-					outfile << "\n";
-				}
-			}
-
-
-
-			outfile.close();
-			infile.close();
-
-			remove("../../Fajlovi\\Dogadjaji.txt");
-			rename("../../Fajlovi\\DogadjajiTemp.txt", "../../Fajlovi\\Dogadjaji.txt");
-
-			String^ naziv = dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells["Naziv"]->Value->ToString();
-			std::string nazivUnmenaged = static_cast<const char*>(Marshal::StringToHGlobalAnsi(naziv).ToPointer());
-
-			std::ifstream kfile1;
-			kfile1.open("../../Fajlovi\\Komentari.txt", std::ios::in);
-			std::ofstream kfile2;
-			kfile2.open("../../Fajlovi\\KomentariTemp.txt", std::ios::out);
-			std::string sline1;
-
-			int kkk = 1, c = 1;
-
-
-			while (kkk)
-			{
-				std::getline(kfile1, sline1);
-
-				if (sline1 == nazivUnmenaged)
-				{
-
-					while (sline1 != "}") std::getline(kfile1, sline1);
-				}
-				else
-				{
-					kfile2 << "\n";
-					kfile2 << sline1;
-				}
-				if (kfile1.eof()) kkk = 0;
-
-
-
-
-			}
-
-
-			kfile1.close();
-			kfile2.close();
-			remove("../../Fajlovi\\Komentari.txt");
-			rename("../../Fajlovi\\KomentariTemp.txt", "../../Fajlovi\\Komentari.txt");
-			MessageBox::Show("Uspjesno izbrisan");
-
-
-			if (!k) MessageBox::Show("Ovaj ID ne postoji");
-
-		}
+		if (String::IsNullOrWhiteSpace(id)) MessageBox::Show("Polje je prazno");
 		else
-			MessageBox::Show("Pogresan ID");
+		{
+			int ID;
+			if (checkIfNumber(idUnmenaged))
+			{
+				ID = std::stoi(idUnmenaged);
+				std::ifstream infile;
+				infile.open("../../Fajlovi\\Dogadjaji.txt", std::ios::in);
+				std::string sline;
+				std::ofstream outfile;
+				outfile.open("../../Fajlovi\\DogadjajiTemp.txt", std::ios::out);
 
-
-
-
-
+				int k = 0;
+				for (int i = 1; std::getline(infile, sline); i++)
+				{
+					if (i == ID)
+					{
+						k = 1;
+					}
+					else
+					{
+						outfile << sline;
+						outfile << "\n";
+					}
+				}
+				outfile.close();
+				infile.close();
+				remove("../../Fajlovi\\Dogadjaji.txt");
+				rename("../../Fajlovi\\DogadjajiTemp.txt", "../../Fajlovi\\Dogadjaji.txt");
+				std::ifstream kfile1;
+				kfile1.open("../../Fajlovi\\Komentari.txt", std::ios::in);
+				std::ofstream kfile2;
+				kfile2.open("../../Fajlovi\\KomentariTemp.txt", std::ios::out);
+				std::string sline1;
+				int h = 1, c = 1;
+				if (k)
+				{
+					String^ naziv = dataGridView1->Rows[ID - 1]->Cells["Naziv"]->Value->ToString();
+					std::string nazivUnmenaged = static_cast<const char*>(Marshal::StringToHGlobalAnsi(naziv).ToPointer());
+					while (h)
+					{
+						std::getline(kfile1, sline1);
+						if (sline1 == nazivUnmenaged)
+						{
+							while (sline1 != "}") std::getline(kfile1, sline1);					
+						}
+						else
+						{
+							if (c == 1)
+								c = 0;
+							else
+								kfile2 << "\n";					
+							kfile2 << sline1;
+						}
+						if (kfile1.eof()) h = 0;
+					}
+					kfile1.close();
+					kfile2.close();
+					remove("../../Fajlovi\\Komentari.txt");
+					rename("../../Fajlovi\\KomentariTemp.txt", "../../Fajlovi\\Komentari.txt");
+					MessageBox::Show("Uspjesno izbrisan");
+					this->Close();
+				}
+				if (!k) MessageBox::Show("Ovaj ID ne postoji");
+			}
+			else
+				MessageBox::Show("Pogresan ID");
+		}	
 	}
 	private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 		if (e->ColumnIndex == 7)
-		{
-			
+		{		
 			String^ trenutni = dataGridView1->Rows[e->RowIndex]->Cells["Naziv"]->FormattedValue->ToString();
 			std::string t = static_cast<const char*>(Marshal::StringToHGlobalAnsi(trenutni).ToPointer());
 			std::fstream inFile;
@@ -345,8 +318,6 @@ namespace AdministrativnaAplikacija {
 				if (svi != "")svi += "\n";
 				std::getline(inFile, sline);
 			}
-
-
 			String^ sviMenaged = gcnew String(svi.c_str());
 			textBox2->Text = sviMenaged;
 			inFile.close();

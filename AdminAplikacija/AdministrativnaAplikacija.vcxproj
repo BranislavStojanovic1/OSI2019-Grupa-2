@@ -172,6 +172,12 @@
     <EmbeddedResource Include="BrisanjeDogadjaja.resx">
       <DependentUpon>BrisanjeDogadjaja.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DodavanjeDogadjaja.resx">
+      <DependentUpon>DodavanjeDogadjaja.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IzmjenaDogadjaja.resx">
+      <DependentUpon>IzmjenaDogadjaja.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Meni.resx">
       <DependentUpon>Meni.h</DependentUpon>
     </EmbeddedResource>
