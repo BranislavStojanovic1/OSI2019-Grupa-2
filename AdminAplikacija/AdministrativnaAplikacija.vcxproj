@@ -184,6 +184,9 @@
     <EmbeddedResource Include="PregledSvihDogadjaja.resx">
       <DependentUpon>PregledSvihDogadjaja.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Prijava.resx">
+      <DependentUpon>Prijava.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

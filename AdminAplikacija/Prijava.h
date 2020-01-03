@@ -47,7 +47,7 @@ namespace AdministrativnaAplikacija {
 		}
 	private: System::Windows::Forms::Button^  button1;
 	protected:
-	private: System::Windows::Forms::Label^  label1;
+
 	private: System::Windows::Forms::TextBox^  textBox1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  textBox2;
@@ -68,7 +68,6 @@ namespace AdministrativnaAplikacija {
 		void InitializeComponent(void)
 		{
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
@@ -78,27 +77,17 @@ namespace AdministrativnaAplikacija {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(94, 159);
+			this->button1->Location = System::Drawing::Point(105, 160);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 0;
-			this->button1->Text = L"Log In";
+			this->button1->Text = L"Prijava";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Prijava::button1_Click);
 			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(108, 21);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(61, 13);
-			this->label1->TabIndex = 1;
-			this->label1->Text = L"Login Page";
-			this->label1->Click += gcnew System::EventHandler(this, &Prijava::label1_Click);
-			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(85, 67);
+			this->textBox1->Location = System::Drawing::Point(105, 67);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(100, 20);
 			this->textBox1->TabIndex = 2;
@@ -109,13 +98,13 @@ namespace AdministrativnaAplikacija {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(24, 70);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(55, 13);
+			this->label2->Size = System::Drawing::Size(75, 13);
 			this->label2->TabIndex = 3;
-			this->label2->Text = L"Username";
+			this->label2->Text = L"Korisnicko ime";
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(85, 107);
+			this->textBox2->Location = System::Drawing::Point(105, 107);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(100, 20);
 			this->textBox2->TabIndex = 4;
@@ -125,9 +114,9 @@ namespace AdministrativnaAplikacija {
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(24, 110);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(53, 13);
+			this->label3->Size = System::Drawing::Size(44, 13);
 			this->label3->TabIndex = 5;
-			this->label3->Text = L"Password";
+			this->label3->Text = L"Lozinka";
 			this->label3->Click += gcnew System::EventHandler(this, &Prijava::label3_Click);
 			// 
 			// button2
@@ -136,7 +125,7 @@ namespace AdministrativnaAplikacija {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 6;
-			this->button2->Text = L"Exit";
+			this->button2->Text = L"Kraj";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &Prijava::button2_Click);
 			// 
@@ -151,7 +140,6 @@ namespace AdministrativnaAplikacija {
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"Prijava";
 			this->Text = L"Prijava";
